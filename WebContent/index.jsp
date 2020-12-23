@@ -11,10 +11,71 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-<title>Insert title here</title>
+<title>메인 페이지</title>
+<link rel="stylesheet" type="text/css" href="${root }/res/listSize.css">
+
+
 </head>
 <body>
 	<u:navbar/> 
+<div class="container my-container">
 
+<div class="row row-cols-1 row-cols-md-2">
+  <div class="col mb-4">  
+    <div class="card">
+	  <a href="${root }/article/artList.do" class="list-group-item list-group-item-primary title" >예술</a>
+	  <a href="${root }/article/artList.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
+	  <a href="${root }/artList.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
+	  <a href="${root }/artList.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
+	  <a href="${root }/artList.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
+    </div>
+  </div>
+  <div class="col mb-4">
+    <div class="card">
+	  <a href="${root }/article/cookList.do" class="list-group-item list-group-item-secondary title" >요리</a>
+	  <a href="${root }/cookListArticle.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
+	  <a href="${root }/cookListArticle.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
+	  <a href="${root }/cookListArticle.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
+	  <a href="${root }/cookListArticle.do" class="list-group-item list-group-item-action">카테고리 최신글</a>	
+    </div>
+  </div>
+  <div class="col mb-4">
+    <div class="card">
+	  <a href="${root }/article/gameList.do" class="list-group-item list-group-item-success title">게임</a>
+	  <a href="${root }/gameListArticle.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
+	  <a href="${root }/gameListArticle.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
+	  <a href="${root }/gameListArticle.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
+	  <a href="${root }/gameListArticle.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
+    </div>
+  </div>
+  <div class="col mb-4">
+    <div class="card">
+	  <a href="${root }/article/musicList.do" class="list-group-item list-group-item-danger title">음악</a>
+	  <a href="${root }/musicListArticle.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
+	  <a href="${root }/musicListArticle.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
+	  <a href="${root }/musicListArticle.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
+	  <a href="${root }/musicListArticle.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
+    </div>
+  </div>
+  <div class="col mb-4">
+    <div class="card">
+	  <a href="${root }/article/sportList.do" class="list-group-item list-group-item-warning title">스포츠</a>
+	  <a href="${root }/sportListArticle.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
+	  <a href="${root }/sportListArticle.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
+	  <a href="${root }/sportListArticle.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
+	  <a href="${root }/sportListArticle.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
+    </div>
+  </div>
+  <div class="col mb-4">
+    <div class="card">
+	  <a href="${root }/article/tourList.do" class="list-group-item list-group-item-dark title">여행</a>
+	  <a href="${root }/tour.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
+	  <a href="${root }/tour.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
+	  <a href="${root }/tour.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
+	  <a href="${root }/tour.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
+    </div>
+  </div>
+</div>
+</div>
 </body>
 </html>

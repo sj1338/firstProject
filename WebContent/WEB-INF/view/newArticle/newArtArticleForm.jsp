@@ -26,7 +26,7 @@
     <textarea name="content" id="" cols="30" rows="5">${param.content }</textarea>
   </p>
   <input type="submit" value="새 글 등록" />
-  <a href="${root }/article/list.do">[게시글목록보기]</a>
+  <a href="${root }/article/artList.do">[게시글목록보기]</a>
 </form>
 </div>
 </body>
