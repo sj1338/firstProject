@@ -18,10 +18,10 @@ public class ArticleDao {
 	public Article insert(Connection conn, Article article) 
 			throws SQLException {
 		// 12c 이상
-		String sql = "INSERT INTO art_article "
-				+ "(writer_id, writer_name, title, content"
+		String sql = "INSERT INTO article "
+				+ "(category, writer_id, writer_name, title, content"
 				+ " regdate, moddate, read_cnt) "
-				+ "VALUES (?, ?, ?, ?, SYSDATE, SYSDATE, 0)";
+				+ "VALUES (?, ?, ?, ?, ?, SYSDATE, SYSDATE, 0)";
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -30,10 +30,11 @@ public class ArticleDao {
 			pstmt = conn.prepareStatement(sql,
 							new String[] {"article_no", "regdate", "moddate"});
 			
-			pstmt.setString(1, article.getWriter().getId());
-			pstmt.setString(2, article.getWriter().getName());
-			pstmt.setString(3, article.getTitle());
-			pstmt.setString(4, article.getContent());
+			pstmt.setString(1, article.getCategory());
+			pstmt.setString(2, article.getWriter().getId());
+			pstmt.setString(3, article.getWriter().getName());
+			pstmt.setString(4, article.getTitle());
+			pstmt.setString(5, article.getContent());
 			
 			int cnt = pstmt.executeUpdate();
 			
@@ -47,7 +48,9 @@ public class ArticleDao {
 					regDate = rs.getTimestamp(2);
 					modDate = rs.getTimestamp(3);
 				}
-				return new Article(key,
+				return new Article(
+						article.getCategory(),
+						key,
 						article.getWriter(),
 						article.getTitle(),
 						article.getContent(),
@@ -63,7 +66,7 @@ public class ArticleDao {
 	}
 	
 	public int selectCount(Connection conn) throws SQLException {
-		String sql = "SELECT COUNT(*) FROM art_article";
+		String sql = "SELECT COUNT(*) FROM article";
 		
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -93,9 +96,9 @@ public class ArticleDao {
 				+ "ORDER BY articl_no DESC "
 				+ "LIMIT ?, ?"; // 시작 row_num(zerobase), 갯수
 		*/
-		String sql = "SELECT rn, article_no, writer_id, writer_name, title, content, regdate, moddate, read_cnt "
-				+ "FROM (SELECT article_no, writer_id, writer_name, title, content, regdate, moddate, read_cnt, ROW_NUMBER() "
-				+ "OVER (ORDER BY article_no DESC) rn FROM art_article) WHERE rn BETWEEN ? AND ?";
+		String sql = "SELECT rn, category, article_no, writer_id, writer_name, title, content, regdate, moddate, read_cnt "
+				+ "FROM (SELECT category, article_no, writer_id, writer_name, title, content, regdate, moddate, read_cnt, ROW_NUMBER() "
+				+ "OVER (ORDER BY article_no DESC) rn FROM article) WHERE rn BETWEEN ? AND ?";
 		
 		
 		PreparedStatement pstmt = null;
@@ -123,7 +126,9 @@ public class ArticleDao {
 	}
 	
 	private Article convertArticle(ResultSet rs) throws SQLException {
-		return new Article(rs.getInt("article_no"),
+		return new Article(
+					rs.getString("category"),
+					rs.getInt("article_no"),
 					new Writer(
 							rs.getString("writer_id"),
 							rs.getString("writer_name")
@@ -134,6 +139,47 @@ public class ArticleDao {
 					rs.getTimestamp("moddate"),
 					rs.getInt("read_cnt")
 				);
+	}
+
+	public List<Article> select(Connection conn, int pageNum, int size, String category)
+		throws SQLException {
+			System.out.println("rs1" + pageNum);
+			System.out.println("rs2" + size);
+			
+			/*
+			String sql = "SELECT * "
+					+ "FROM article "
+					+ "ORDER BY articl_no DESC "
+					+ "LIMIT ?, ?"; // 시작 row_num(zerobase), 갯수
+			*/
+			String sql = "SELECT rn, category, article_no, writer_id, writer_name, title, content, regdate, moddate, read_cnt "
+					+ "FROM (SELECT category, article_no, writer_id, writer_name, title, content, regdate, moddate, read_cnt, ROW_NUMBER() "
+					+ "OVER (ORDER BY article_no DESC) rn FROM article WHERE category=? ) WHERE rn BETWEEN ? AND ?";
+			
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, category);
+				pstmt.setInt(2, (pageNum-1) * size + 1);
+				pstmt.setInt(3, pageNum * size);
+				
+				System.out.println((pageNum-1) * size + 1);
+				System.out.println(pageNum * size);
+				
+				rs = pstmt.executeQuery();
+				List<Article> result = new ArrayList<>();
+				while (rs.next()) {
+					System.out.println("rs" + rs);
+					result.add(convertArticle(rs));
+				}
+				
+				return result;
+			} finally {
+				JdbcUtil.close(rs, pstmt);
+			}
 	}
 	
 

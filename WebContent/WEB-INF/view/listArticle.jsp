@@ -15,6 +15,7 @@
 <script
   src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<link rel="stylesheet" type="text/css" href="/myproject/res/listSize.css">
 <title>Insert title here</title>
 <style>
 .num-col {
@@ -32,22 +33,34 @@
 .read-col {
   width: 10%;
 }
+
+#cat {
+	font-size:20px;
+	margin-bottom : 20px;
+}
+
+
+.table-text{
+	color : blue;
+	background-color : #e3f2fd;
+	
+}
 </style>
 </head>
 <body>
   <u:navbar/>
 
-  <div class="container">
+  <div class="container " >
     <div class="row">
       <div class="col-3"></div>
       <div class="col-6">
-        <h1>게시글 목록</h1>
+        <h1 id=cat><b>${category } 게시판 입니다.</b></h1>
+        
 
         <div class="list-container">
-          <table class="table table-striped">
+          <table class="table">
             <thead>
-              <tr>
-                <th class="num-col"><i class="fab fa-slack-hash"></i></th>
+              <tr class="table-text">
                 <th class="title-col">제목</th>
                 <th class="read-col"><i class="fas fa-eye"></i></th>
                 <th class="writer-col"><i class="fas fa-user-edit"></i></th>
@@ -56,7 +69,6 @@
             <tbody>
               <c:forEach var="article" items="${articlePage.content }">
                 <tr>
-                  <td class="text-right">${article.number }</td>
                   <td class="position-relative">
                   <a class="stretched-link" href="${root }/article/read.do?no=${article.number }&pageNo=${articlePage.currentPage}">
                     <c:out value="${article.title }" />
@@ -67,10 +79,9 @@
                 </tr>
               </c:forEach>
             </tbody>
-
           </table>
-
         </div>
+        
         <div class="mt-5 pagenation-container d-flex justify-content-center">
           <nav aria-label="Page navigation example">
             <ul class="pagination">

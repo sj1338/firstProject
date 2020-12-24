@@ -17,12 +17,12 @@
           카테고리
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="${root }/article/artList.do">예술</a>
-          <a class="dropdown-item" href="${root }/article/cookList.do">요리</a>
-          <a class="dropdown-item" href="${root }/article/gameList.do">게임</a>
-          <a class="dropdown-item" href="${root }/article/musicList.do">음악</a>
-          <a class="dropdown-item" href="${root }/article/sportList.do">스포츠</a>
-          <a class="dropdown-item" href="${root }/article/tourList.do">여행</a>
+          <a class="dropdown-item" href="${root }/article/list.do?cat=art">예술</a>
+          <a class="dropdown-item" href="${root }/article/list.do?cat=cook">요리</a>
+          <a class="dropdown-item" href="${root }/article/list.do?cat=game">게임</a>
+          <a class="dropdown-item" href="${root }/article/list.do?cat=music">음악</a>
+          <a class="dropdown-item" href="${root }/article/list.do?cat=sport">스포츠</a>
+          <a class="dropdown-item" href="${root }/article/list.do?cat=tour">여행</a>
         </div>
       </li>
       </ul>

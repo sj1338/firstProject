@@ -99,7 +99,7 @@ public class ControllerUsingURI extends HttpServlet {
 	
 	private void process(HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException {
-		
+		request.setCharacterEncoding("utf-8");
 		String uri = request.getRequestURI();
 		String root = request.getContextPath();
 		

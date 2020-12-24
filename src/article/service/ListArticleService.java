@@ -12,10 +12,11 @@ public class ListArticleService {
 	private ArticleDao articleDao = new ArticleDao();
 	private int size = 10;
 	
-	public ArticlePage getArticlePage(int pageNum) {
+
+	public ArticlePage getArticlePage(int pageNum, String category) {
 		try (Connection conn = ConnectionProvider.getConnection()) {
 			int total = articleDao.selectCount(conn);
-			List<Article> content = articleDao.select(conn, pageNum, size);
+			List<Article> content = articleDao.select(conn, pageNum, size, category);
 			System.out.println("content-size" + content.size());
 			return new ArticlePage(total, pageNum, size, content);
 		} catch (SQLException e) {

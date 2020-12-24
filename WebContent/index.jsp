@@ -23,16 +23,15 @@
 <div class="row row-cols-1 row-cols-md-2">
   <div class="col mb-4">  
     <div class="card">
-	  <a href="${root }/article/artList.do" class="list-group-item list-group-item-primary title" >예술</a>
-	  <a href="${root }/article/artList.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
-	  <a href="${root }/artList.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
-	  <a href="${root }/artList.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
-	  <a href="${root }/artList.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
+	  <a href="${root }/article/list.do?cat=art" class="list-group-item list-group-item-primary title" >예술</a>
+	  <c:forEach items="${artArticleList }" var="article">
+	  	<a href="${root }/readArticle.do?articleNum=${article.num}" class="list-group-item list-group-item-action">${article.title }</a>
+	  </c:forEach>
     </div>
   </div>
   <div class="col mb-4">
     <div class="card">
-	  <a href="${root }/article/cookList.do" class="list-group-item list-group-item-secondary title" >요리</a>
+	  <a href="${root }/article/list.do?cat=cook" class="list-group-item list-group-item-secondary title" >요리</a>
 	  <a href="${root }/cookListArticle.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
 	  <a href="${root }/cookListArticle.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
 	  <a href="${root }/cookListArticle.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
@@ -41,7 +40,7 @@
   </div>
   <div class="col mb-4">
     <div class="card">
-	  <a href="${root }/article/gameList.do" class="list-group-item list-group-item-success title">게임</a>
+	  <a href="${root }/article/list.do?cat=game" class="list-group-item list-group-item-success title">게임</a>
 	  <a href="${root }/gameListArticle.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
 	  <a href="${root }/gameListArticle.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
 	  <a href="${root }/gameListArticle.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
@@ -50,7 +49,7 @@
   </div>
   <div class="col mb-4">
     <div class="card">
-	  <a href="${root }/article/musicList.do" class="list-group-item list-group-item-danger title">음악</a>
+	  <a href="${root }/article/list.do?cat=music" class="list-group-item list-group-item-danger title">음악</a>
 	  <a href="${root }/musicListArticle.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
 	  <a href="${root }/musicListArticle.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
 	  <a href="${root }/musicListArticle.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
@@ -59,7 +58,7 @@
   </div>
   <div class="col mb-4">
     <div class="card">
-	  <a href="${root }/article/sportList.do" class="list-group-item list-group-item-warning title">스포츠</a>
+	  <a href="${root }/article/list.do?cat=sport" class="list-group-item list-group-item-warning title">스포츠</a>
 	  <a href="${root }/sportListArticle.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
 	  <a href="${root }/sportListArticle.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
 	  <a href="${root }/sportListArticle.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
@@ -68,7 +67,7 @@
   </div>
   <div class="col mb-4">
     <div class="card">
-	  <a href="${root }/article/tourList.do" class="list-group-item list-group-item-dark title">여행</a>
+	  <a href="${root }/article/list.do?cat=tour" class="list-group-item list-group-item-dark title">여행</a>
 	  <a href="${root }/tour.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
 	  <a href="${root }/tour.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
 	  <a href="${root }/tour.do" class="list-group-item list-group-item-action">카테고리 최신글</a>
