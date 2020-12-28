@@ -26,7 +26,7 @@ public class ControllerUsingURI extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String prefix = "/WEB-INF/view/";
 	private String suffix = ".jsp";
-	private Map<String, CommandHandler> map;
+	private Map<String, CommandHandler> map;	
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -99,6 +99,7 @@ public class ControllerUsingURI extends HttpServlet {
 	
 	private void process(HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("url-process2:"+System.currentTimeMillis());
 		request.setCharacterEncoding("utf-8");
 		String uri = request.getRequestURI();
 		String root = request.getContextPath();
@@ -116,14 +117,17 @@ public class ControllerUsingURI extends HttpServlet {
 		
 		String view = null;
 		try {
+			System.out.println("url-process1:"+System.currentTimeMillis());
 			view = handler.process(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		if (view != null) {
+			System.out.println("url-process3:"+System.currentTimeMillis());
 			request.getRequestDispatcher(prefix + view + suffix)
 			.forward(request, response);	
+			System.out.println("url-process4:"+System.currentTimeMillis());
 		}	
 	}
 }

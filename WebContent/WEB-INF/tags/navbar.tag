@@ -2,6 +2,31 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="u" tagdir="/WEB-INF/tags" %>
 
+<style>
+.title {
+	font-weight: bold;
+	font-size: 20px;	
+}
+
+
+.container.my-container {
+    max-width: 1400px;
+}
+
+.nav-item {
+	font-size: 20px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.navbar-brand {
+	font-weight: bold;
+	font-size: 22px;
+}
+
+
+</style>
+
 <div class="container my-container mb-5">
 <nav class="navbar navbar-expand-lg navbar-light py-3" style="background-color: #e3f2fd;">
   <a class="navbar-brand" href="${root }/index.jsp">FirstProject.com</a>

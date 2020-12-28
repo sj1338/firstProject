@@ -65,6 +65,16 @@ public class ArticleDao {
 		}
 	}
 	
+	public void increaseReadCount(Connection conn, int no) throws SQLException {
+		String sql = "UPDATE article "
+				+ "SET read_cnt=read_cnt+1 "
+				+ "WHERE article_no=?";
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, no);
+			pstmt.executeUpdate();
+		}
+	}
+	
 	public int selectCount(Connection conn) throws SQLException {
 		String sql = "SELECT COUNT(*) FROM article";
 		
@@ -140,7 +150,7 @@ public class ArticleDao {
 					rs.getInt("read_cnt")
 				);
 	}
-
+	
 	public List<Article> select(Connection conn, int pageNum, int size, String category)
 		throws SQLException {
 			System.out.println("rs1" + pageNum);
