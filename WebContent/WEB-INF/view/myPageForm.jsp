@@ -27,7 +27,8 @@
   <u:navbar />
 	  <ul class = info>
 	  	<li class="list-group-item">아이디 : ${authUser.id}</li>
-    	<li class="list-group-item">비밀번호 : ${authUser.name} </li>
+	  	<li class="list-group-item">이름 : ${authUser.name}</li>
+    	<li class="list-group-item">비밀번호 : ${authUser.password} </li>
     	<li class="list-group-item">가입 날짜 : ${authUser.regdate}</li>
 	  </ul>
  <div class = text-center>

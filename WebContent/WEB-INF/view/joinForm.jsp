@@ -93,7 +93,8 @@
       <button type="submit" class="btn btn-primary">회원 가입</button>
     </form>
       </div>
-      <div class="col-3"></div>
+      <div class="col-3">
+      </div>
     </div>
     
 

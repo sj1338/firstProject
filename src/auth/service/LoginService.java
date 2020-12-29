@@ -20,7 +20,7 @@ public class LoginService {
 				throw new LoginFailException();
 			}
 			
-			return new User(member.getId(), member.getName(), member.getRegDate());
+			return new User(member.getId(), member.getName(), member.getPassword(), member.getRegDate());
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

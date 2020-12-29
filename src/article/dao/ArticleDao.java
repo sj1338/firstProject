@@ -14,7 +14,31 @@ import article.model.Writer;
 import jdbc.JdbcUtil;
 
 public class ArticleDao {
-
+	
+	public Article selectById(Connection conn, int no) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * "
+				+ "FROM article "
+				+ "WHERE article_no=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			
+			Article article = null;
+			
+			if (rs.next()) {
+				article = convertArticle(rs);
+			}
+			return article;
+		} finally {
+			JdbcUtil.close(rs, pstmt);
+		}
+		
+	}
+	
 	public Article insert(Connection conn, Article article) 
 			throws SQLException {
 		// 12c 이상
@@ -95,62 +119,6 @@ public class ArticleDao {
 	}
 	
 	
-	public List<Article> select(Connection conn, int pageNum, int size) 
-		throws SQLException {
-		System.out.println("rs1" + pageNum);
-		System.out.println("rs2" + size);
-		
-		/*
-		String sql = "SELECT * "
-				+ "FROM article "
-				+ "ORDER BY articl_no DESC "
-				+ "LIMIT ?, ?"; // 시작 row_num(zerobase), 갯수
-		*/
-		String sql = "SELECT rn, category, article_no, writer_id, writer_name, title, content, regdate, moddate, read_cnt "
-				+ "FROM (SELECT category, article_no, writer_id, writer_name, title, content, regdate, moddate, read_cnt, ROW_NUMBER() "
-				+ "OVER (ORDER BY article_no DESC) rn FROM article) WHERE rn BETWEEN ? AND ?";
-		
-		
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, (pageNum-1) * size + 1);
-			pstmt.setInt(2, pageNum * size);
-			
-			System.out.println((pageNum-1) * size + 1);
-			System.out.println(pageNum * size);
-			
-			rs = pstmt.executeQuery();
-			List<Article> result = new ArrayList<>();
-			while (rs.next()) {
-				System.out.println("rs" + rs);
-				result.add(convertArticle(rs));
-			}
-			
-			return result;
-		} finally {
-			JdbcUtil.close(rs, pstmt);
-		}
-	}
-	
-	private Article convertArticle(ResultSet rs) throws SQLException {
-		return new Article(
-					rs.getString("category"),
-					rs.getInt("article_no"),
-					new Writer(
-							rs.getString("writer_id"),
-							rs.getString("writer_name")
-							),
-					rs.getString("title"),
-					rs.getString("content"),
-					rs.getTimestamp("regdate"),
-					rs.getTimestamp("moddate"),
-					rs.getInt("read_cnt")
-				);
-	}
-	
 	public List<Article> select(Connection conn, int pageNum, int size, String category)
 		throws SQLException {
 			System.out.println("rs1" + pageNum);
@@ -190,6 +158,23 @@ public class ArticleDao {
 			} finally {
 				JdbcUtil.close(rs, pstmt);
 			}
+	}
+		
+	
+	private Article convertArticle(ResultSet rs) throws SQLException {
+		return new Article(
+					rs.getString("category"),
+					rs.getInt("article_no"),
+					new Writer(
+							rs.getString("writer_id"),
+							rs.getString("writer_name")
+							),
+					rs.getString("title"),
+					rs.getString("content"),
+					rs.getTimestamp("regdate"),
+					rs.getTimestamp("moddate"),
+					rs.getInt("read_cnt")
+				);
 	}
 	
 

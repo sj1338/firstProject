@@ -11,7 +11,6 @@ public class MyPageHandler implements CommandHandler {
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		System.out.println("process1:"+System.currentTimeMillis());
 		if (req.getMethod().equalsIgnoreCase("GET")) {
 			return processForm(req, res);
 		} else {
@@ -21,7 +20,6 @@ public class MyPageHandler implements CommandHandler {
 
 }
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
-		System.out.println("processform1:"+System.currentTimeMillis());
 //		User user = (User) req.getSession().getAttribute("authUser");
 //		req.getSession().setAttribute("authUser", user);
 		return FORM_VIEW;

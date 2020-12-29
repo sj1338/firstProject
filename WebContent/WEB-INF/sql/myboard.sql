@@ -9,9 +9,32 @@ SELECT * FROM member;
 DROP table member;
 DROP table article;
 
+
 SELECT * FROM article;
 
-INSERT INTO article (category, writer_id, writer_name, title, content, regdate, moddate, read_cnt) VALUES ('sport', 'a', 'a', 'title', 'body', sysdate, sysdate, 0);
+INSERT INTO article (category, writer_id, writer_name, title, content, regdate, moddate, read_cnt)
+VALUES ('art', 'artId', 'artName', 'artTitle', 'artBody', sysdate, sysdate, 0);
+
+INSERT INTO article (category, writer_id, writer_name, title, content, regdate, moddate, read_cnt)
+VALUES ('cook', 'cookId', 'cookName', 'cookTitle', 'cookBody', sysdate, sysdate, 0);
+
+INSERT INTO article (category, writer_id, writer_name, title, content, regdate, moddate, read_cnt)
+VALUES ('game', 'gameId', 'gameName', 'gameTitle', 'gameBody', sysdate, sysdate, 0);
+
+INSERT INTO article (category, writer_id, writer_name, title, content, regdate, moddate, read_cnt)
+VALUES ('music', 'musicId', 'musicName', 'musicTitle', 'musicBody', sysdate, sysdate, 0);
+
+INSERT INTO article (category, writer_id, writer_name, title, content, regdate, moddate, read_cnt)
+VALUES ('sport', 'sportId', 'sportName', 'sportTitle', 'sportBody', sysdate, sysdate, 0);
+
+INSERT INTO article (category, writer_id, writer_name, title, content, regdate, moddate, read_cnt)
+VALUES ('tour', 'tourTesterId', 'testerName', 'title', 'body', sysdate, sysdate, 0);
+
+INSERT INTO article (category, writer_id, writer_name, title, content, regdate, moddate, read_cnt)
+VALUES ('???', 'ERROR', 'ERROR', 'ERRORtitle', 'ERRORbody', sysdate, sysdate, 0);
+
+
+
 
 commit;
 
@@ -32,6 +55,9 @@ CREATE TABLE article (
     read_cnt NUMBER,
     PRIMARY KEY (article_no)
 );
+
+
+
 
 
 SELECT rn, article_no, writer_id, writer_name, title, content, regdate, moddate, read_cnt

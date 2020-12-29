@@ -49,6 +49,35 @@ public class JoinHandler implements CommandHandler {
 		
 		joinReq.validate(errors);
 		
+		String id = req.getParameter("id");
+		String name = req.getParameter("name");
+		String password = req.getParameter("password");
+		String confirmPassword = req.getParameter("confirmPassword");
+		
+		if (id == null || id.isEmpty()) {
+			errors.put("id", true);
+		}
+		
+		if (name == null || name.isEmpty()) {
+			errors.put("name", true);
+		}
+		
+		if (password == null || password.isEmpty()) {
+			errors.put("password", true);
+		}
+		
+		if (confirmPassword == null || confirmPassword.isEmpty()) {
+			errors.put("confirmPassword", true);
+		}
+		
+		/*
+		 * if (!password.equals(ConfirmPassword)) { errors.put("notMatch", true); }
+		 */
+		
+		if (!password.equals(confirmPassword)) {
+			errors.put("notMatch", true);
+		}
+		
 		if (!errors.isEmpty()) {
 			return FORM_VIEW;
 		}
@@ -59,7 +88,6 @@ public class JoinHandler implements CommandHandler {
 			/* 로그인 */
 			User user = loginService.login(joinReq.getId(), joinReq.getPassword());
 			req.getSession().setAttribute("authUser", user);
-			
 			req.setAttribute("success", true);
 			return FORM_VIEW;
 //			return "joinSuccess";

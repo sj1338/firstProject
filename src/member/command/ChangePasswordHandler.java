@@ -48,13 +48,21 @@ public class ChangePasswordHandler implements CommandHandler {
 		if (newPwd == null || newPwd.isEmpty()) {
 			errors.put("newPwd", true);
 		}
+		
+		if (!curPwd.equals(curPwd)) {
+			errors.put("badCurPwd", true);
+		}
+		
+		
 		if (!errors.isEmpty()) {
 			return FORM_VIEW;
 		}
 		
 		try {
 			changePwdSvc.changePassword(user.getId(), curPwd, newPwd);
-			return "changePwdSuccess";
+			user.setPassword(newPwd);
+			req.setAttribute("success", true);
+			return FORM_VIEW;
 		} catch (InvalidPasswordException e) {
 			errors.put("badCurPwd", true);
 			return FORM_VIEW;
