@@ -5,7 +5,6 @@ import java.sql.SQLException;
 
 import article.dao.ArticleDao;
 import article.model.Article;
-import article.model.Writer;
 import jdbc.ConnectionProvider;
 
 public class ReadArticleService {

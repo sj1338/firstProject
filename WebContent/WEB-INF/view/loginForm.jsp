@@ -49,7 +49,31 @@
   	</div>
   </div>
   
-  
+  <c:if test="${success }" >
+	<div class="modal" tabindex="-1" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">로그인</h5>
+      </div>
+      <div class="modal-body">
+        <p>${param.name}님 환영합니다.</p>
+      </div>
+      <div class="modal-footer">
+        <a href="${root }/index.do" class="btn btn-primary">홈으로 가기</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$('#myModal').modal({
+			backdrop: 'static',
+			keyboard: false
+		});
+</script>
+</c:if>
+
 </body>
 </html>
 

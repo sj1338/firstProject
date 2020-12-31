@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="u" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="u" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,6 +36,7 @@
 	background-color: #cfffda;
 }
 
+
 </style>
 </head>
 
@@ -43,33 +44,20 @@
   <u:navbar />
   
 <div class="container">
-<form action="write.do" method="post">
-
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">카테고리</label>
-    <select class="form-control" id="exampleFormControlSelect1" name="category" >
-      <option value="art">예술</option>
-      <option value="cook">요리</option>
-      <option value="game">게임</option>
-      <option value="music">음악</option>
-      <option value="sport">스포츠</option>
-      <option value="tour">관광</option>
-    </select>
-  </div>
-
-
+ <form action="modify.do" method="post">
+ <p style="font-size: 30px">번호 : ${modReq.articleNumber}</p>
 <div class="card" >
   <div class="card-header"><b>제목</b></div>
-  <input type="text" name="title" value="${param.title }" />
+  <input type="text" name="title" value="${modReq.title }" />
     <c:if test="${errors.title }">제목을 입력하세요.</c:if>
 </div>
 
 <div class="card" >
   <div class="card-header"><b>내용</b></div>
-  <textarea name="content" id="" cols="30" rows="5">${param.content }</textarea>
+  <textarea name="content" id="" cols="30" rows="5">${modReq.content }</textarea>
 </div>
 <div class="button2 text-center">
-<button type="submit" class="btn btn-primary">새 글 등록</button>
+<button type="submit" class="btn btn-primary">글 수정</button>
 <c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo }" />
 	<a href="${root }/article/list.do?cat=${param.cat}" class="btn btn-primary" role="button" aria-pressed="true">목록</a>
 	</div>
@@ -77,7 +65,7 @@
 </div>
 
 
-
-
 </body>
 </html>
+
+

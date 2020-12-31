@@ -22,6 +22,21 @@ public class Article {
 		this.modifiedDate = modifiedDate;
 		this.readCount = readCount;
 	}
+	
+	
+	
+	public Article() {
+		// TODO Auto-generated constructor stubs
+	}
+	
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public void setNo(int number) {
+		this.number = number;
+	}
+	
+	
 	public String getCategory() {
 		return category;
 	}
@@ -45,6 +60,15 @@ public class Article {
 	}
 	public int getReadCount() {
 		return readCount;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Article [category=" + category + ", number=" + number + ", writer=" + writer + ", title=" + title
+				+ ", content=" + content + ", regDate=" + regDate + ", modifiedDate=" + modifiedDate + ", readCount="
+				+ readCount + "]";
 	}
 	
 	

@@ -9,11 +9,16 @@ SELECT * FROM member;
 DROP table member;
 DROP table article;
 
+SELECT * FROM (SELECT * FROM article WHERE category='art' ORDER BY article_no) ROWNUM;
+
+SELECT ROWNUM, article_no, title, regdate, read_cnt FROM (SELECT * FROM article WHERE category='art' ORDER BY article_no) WHERE ROWNUM <= 4;
 
 SELECT * FROM article;
 
+commit;
+
 INSERT INTO article (category, writer_id, writer_name, title, content, regdate, moddate, read_cnt)
-VALUES ('art', 'artId', 'artName', 'artTitle', 'artBody', sysdate, sysdate, 0);
+VALUES ('art', 'artId1', '김하나', '반갑습니다 김하나 입니다.', '처음뵙겠습니다', sysdate, sysdate, 0);
 
 INSERT INTO article (category, writer_id, writer_name, title, content, regdate, moddate, read_cnt)
 VALUES ('cook', 'cookId', 'cookName', 'cookTitle', 'cookBody', sysdate, sysdate, 0);

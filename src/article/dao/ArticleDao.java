@@ -15,6 +15,96 @@ import jdbc.JdbcUtil;
 
 public class ArticleDao {
 	
+	
+	public int update(Connection conn, int no, String title) throws SQLException {
+		String sql = "UPDATE article "
+				+ "SET title=?, moddate=SYSDATE "
+				+ "WHERE article_no=?";
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, title);
+			pstmt.setInt(2, no);
+			
+			int cnt = pstmt.executeUpdate();
+			return cnt;
+		}
+	}
+	
+	
+	public void delete(Connection con, int no) throws SQLException {
+		String sql = "DELETE article WHERE article_no=?";
+		
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setInt(1, no);
+			
+			pstmt.executeUpdate();
+		}
+	}
+	
+	
+	public List<Article> search (Connection conn, int pageNum, int size, String search) {
+		List<Article> list = new ArrayList<Article>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT rn, title, article_no " + 
+				"FROM (SELECT title, article_no, ROW_NUMBER() " + 
+				"OVER (ORDER BY article_no DESC) rn FROM article WHERE title LIKE ? ) WHERE rn BETWEEN ? AND ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, '%'+search+'%');
+			pstmt.setInt(2, (pageNum-1) * size + 1);
+			pstmt.setInt(3, pageNum * size);
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				Article article = new Article();
+				article.setNo(rs.getInt(1));
+				article.setTitle(rs.getString(2));
+				
+				
+				list.add(article);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	
+	}
+	
+	
+	
+	public List<Article> selectNew4 (Connection conn, String category) {
+		
+		List<Article> list = new ArrayList<Article>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT ROWNUM, article_no, title FROM (SELECT * FROM article WHERE category= ? ORDER BY article_no DESC) WHERE ROWNUM <= 4";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, category);
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				Article article = new Article();
+				article.setNo(rs.getInt(2));
+				article.setTitle(rs.getString(3));
+				
+				list.add(article);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+
+	
 	public Article selectById(Connection conn, int no) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -43,7 +133,7 @@ public class ArticleDao {
 			throws SQLException {
 		// 12c 이상
 		String sql = "INSERT INTO article "
-				+ "(category, writer_id, writer_name, title, content"
+				+ "(category, writer_id, writer_name, title, content,"
 				+ " regdate, moddate, read_cnt) "
 				+ "VALUES (?, ?, ?, ?, ?, SYSDATE, SYSDATE, 0)";
 

@@ -21,20 +21,6 @@
   <u:navbar />
 
   <div class="container">
-  <!-- 
-    <div class="row">
-      <div class="col-3">
-      	<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam ex voluptatum tenetur suscipit quod fuga nemo nam molestiae. A minus suscipit similique saepe nam dignissimos aliquam sit obcaecati pariatur natus!</div>
-      </div>
-      <div class="col-6">
-      	<div>Ut amet consequatur impedit ullam at atque sunt. Totam eveniet ducimus a possimus est veritatis architecto excepturi iusto magnam mollitia quae assumenda pariatur earum quibusdam maiores repellat consectetur omnis ab.</div>
-      </div>
-      <div class="col-3">
-      	<div>Aliquam voluptas doloribus esse distinctio est officiis ipsam eaque neque eligendi cum officia illum fugit voluptate voluptatem veritatis eius obcaecati placeat minus dignissimos nisi corporis animi possimus illo beatae modi.</div>
-      </div>
-    </div>
-   -->
-  
     <div class="row">
       <div class="col-3"></div>
       <div class="col-6">
@@ -112,7 +98,7 @@
         <p>${param.name}님 가입을 환영합니다.</p>
       </div>
       <div class="modal-footer">
-        <a href="${root }/index.jsp" class="btn btn-primary">홈으로 가기</a>
+        <a href="${root }/index.do" class="btn btn-primary">홈으로 가기</a>
       </div>
     </div>
   </div>

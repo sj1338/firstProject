@@ -43,14 +43,7 @@
 .table-text{
 	color : blue;
 	background-color : #e3f2fd;
-}
-
-.writebtn {
-	margin-bottom : 20px;
-}
-
-#cat {
-	font-size : 30px;
+	
 }
 </style>
 </head>
@@ -61,10 +54,9 @@
     <div class="row">
       <div class="col-3"></div>
       <div class="col-6">
-        <h1 id=cat><b>${category } 게시판 입니다.</b></h1>
-      <div class="writebtn text-right">
-        <a href="write.do" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">글 쓰기</a>
-	  </div> 
+        <h1 id=cat><b>${param.search } 제목 검색 결과 입니다.</b></h1>
+        
+
         <div class="list-container">
           <table class="table">
             <thead>
@@ -94,15 +86,15 @@
           <nav aria-label="Page navigation example">
             <ul class="pagination">
               <c:if test="${articlePage.startPage > 5}">
-                <li class="page-item"><a class="page-link" href="${root }/article/list.do?cat=${category }&pageNo=${articlePage.startPage - 5 }">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="${root }/search.do?search=${param.search }&pageNo=${articlePage.startPage - 5 }">Previous</a></li>
               </c:if>
               
               <c:forEach begin="${articlePage.startPage }" end="${articlePage.endPage }" var="pNo">
-                <li class="page-item"><a class="page-link" href="${root }/article/list.do?cat=${category }&pageNo=${pNo}">${pNo }</a></li>
+                <li class="page-item"><a class="page-link" href="${root }/search.do?search=${param.search }&pageNo=${pNo}">${pNo }</a></li>
               
               </c:forEach>
               <c:if test="${articlePage.endPage < articlePage.totalPages }">
-                <li class="page-item"><a class="page-link" href="${root }/article/list.do?cat=${category }&pageNo=${articlePage.startPage + 5 }">Next</a></li>
+                <li class="page-item"><a class="page-link" href="${root }/search.do?search=${param.search }&pageNo=${articlePage.startPage + 5 }">Next</a></li>
               </c:if>
             </ul>
           </nav>

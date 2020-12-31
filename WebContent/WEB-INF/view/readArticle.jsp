@@ -15,43 +15,63 @@
   src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
   src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style>
+
+.card {
+  width: 50rem; 
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom : 20px;
+}
+
+.button2 {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card-header {
+	background-color: #cfffda;
+}
+
+</style>
 <title>Insert title here</title>
 </head>
 <body>
-  <div class="container">
-    <table border="1" width="100%">
-      <tr>
-        <td>번호</td>
-        <td>${article.number }</td>
-      </tr>
-      <tr>
-        <td>작성자</td>
-        <td>${article.writer.name }</td>
-      </tr>
-      <tr>
-        <td>제목</td>
-        <td><c:out value="${article.title }"></c:out></td>
-      </tr>
-      <tr>	
-        <td>내용</td>
-        <td><u:pre value="${article.content }" /></td>
-      </tr>
-      <tr>
-        <td colspan="2"><c:set var="pageNo"
-            value="${empty param.pageNo ? '1' : param.pageNo }" /> <a
-          href="list.do?pageNo=${pageNo}&cat=${article.category}">[목록]</a>
-          <c:if
-            test="${authUser.id == articleData.article.writer.id}">
-            <a href="modify.do?no=${article.number }">[게시글수정]</a>
-            <a href="delete.do?no=${article.number }">[게시글삭제]</a>
-          </c:if></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-      </tr>
-    </table>
+  <u:navbar/>
+
+
+<div class="card" >
+  <div class="card-header"><b>제목</b></div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><c:out value="${article.title }"></c:out></li>
+  </ul>
 </div>
+
+<div class="card" >
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><b>No.</b> ${article.number } / <b>작성자 </b> ${article.writer.name } / <b>아이디 </b> ${article.writer.id }</li>
+  </ul>
+</div>
+
+<div class="card" >
+  <div class="card-header"><b>내용</b></div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><u:pre value="${article.content }" /></li>
+  </ul>
+</div>
+
+
+<div class = "button2 text-center">
+<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo }" />
+	<a href="list.do?pageNo=${pageNo}&cat=${article.category}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">목록</a>
+
+<c:if test="${(not empty authUser) and (authUser.id eq article.writer.id)}">
+	<a href="modify.do?no=${article.number }" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">게시글수정</a>
+	<a href="delete.do?no=${article.number }" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">게시글삭제</a>
+</c:if>
+</div>
+
+ 
 </body>
 </html>
 

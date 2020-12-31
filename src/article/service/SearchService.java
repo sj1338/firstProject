@@ -7,21 +7,23 @@ import java.util.List;
 import article.dao.ArticleDao;
 import article.model.Article;
 import jdbc.ConnectionProvider;
+import jdbc.JdbcUtil;
 
-public class ListArticleService {
+public class SearchService {
 	private ArticleDao articleDao = new ArticleDao();
 	private int size = 10;
-
-	public ArticlePage getArticlePage(int pageNum, String category) {
+	
+	public ArticlePage getArticlePage(int pageNum, String search) {
 		try (Connection conn = ConnectionProvider.getConnection()) {
 			
 			
-			int total = articleDao.selectCount(conn);
+			int total = articleDao.selectCount(conn);  // int total = articleDao.selectCount(conn);
 			
-			List<Article> content = articleDao.select(conn, pageNum, size, category);
+			List<Article> result = articleDao.search(conn, pageNum, size, search); // List<Article> content = articleDao.select(conn, pageNum, size, category);
 			
-			System.out.println("content-size" + content.size());
-			return new ArticlePage(total, pageNum, size, content);
+			
+			
+			return new ArticlePage(total, pageNum, size, result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
