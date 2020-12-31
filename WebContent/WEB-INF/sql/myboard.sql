@@ -18,22 +18,22 @@ SELECT * FROM article;
 commit;
 
 INSERT INTO article (category, writer_id, writer_name, title, content, regdate, moddate, read_cnt)
-VALUES ('art', 'artId1', '김하나', '반갑습니다 김하나 입니다.', '처음뵙겠습니다', sysdate, sysdate, 0);
+VALUES ('art', 'artId5', '김다섯', '반갑습니다 김다섯 입니다.', '처음뵙겠습니다', sysdate, sysdate, 0);
 
 INSERT INTO article (category, writer_id, writer_name, title, content, regdate, moddate, read_cnt)
-VALUES ('cook', 'cookId', 'cookName', 'cookTitle', 'cookBody', sysdate, sysdate, 0);
+VALUES ('cook', 'cookId5', '최다섯', '최다섯입니다. 취미는 도배입니다.', '도배해야지', sysdate, sysdate, 0);
 
 INSERT INTO article (category, writer_id, writer_name, title, content, regdate, moddate, read_cnt)
-VALUES ('game', 'gameId', 'gameName', 'gameTitle', 'gameBody', sysdate, sysdate, 0);
+VALUES ('game', 'gameId3', '이셋', '안녕 난 이셋이야', '반가워', sysdate, sysdate, 0);
 
 INSERT INTO article (category, writer_id, writer_name, title, content, regdate, moddate, read_cnt)
-VALUES ('music', 'musicId', 'musicName', 'musicTitle', 'musicBody', sysdate, sysdate, 0);
+VALUES ('music', 'musicId1', '김헬창', '여기 아무도 없나요?', '없나요?', sysdate, sysdate, 0);
 
 INSERT INTO article (category, writer_id, writer_name, title, content, regdate, moddate, read_cnt)
-VALUES ('sport', 'sportId', 'sportName', 'sportTitle', 'sportBody', sysdate, sysdate, 0);
+VALUES ('sport', 'sportId2', '응아냐', '응안돼', 'ㅋㅋ', sysdate, sysdate, 0);
 
 INSERT INTO article (category, writer_id, writer_name, title, content, regdate, moddate, read_cnt)
-VALUES ('tour', 'tourTesterId', 'testerName', 'title', 'body', sysdate, sysdate, 0);
+VALUES ('tour', 'tourTesterId1', '나광고', '정지풀어주세요', '광고안할게요', sysdate, sysdate, 0);
 
 INSERT INTO article (category, writer_id, writer_name, title, content, regdate, moddate, read_cnt)
 VALUES ('???', 'ERROR', 'ERROR', 'ERRORtitle', 'ERRORbody', sysdate, sysdate, 0);
