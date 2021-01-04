@@ -27,7 +27,7 @@ public class ModifyArticleService {
 			if(!canModify(modReq.getUserId(),article)) {
 				throw new PermissionDeniedException();
 			}
-			articleDao.update(conn, modReq.getArticleNumber(), modReq.getTitle());
+			articleDao.update(conn, modReq.getArticleNumber(), modReq.getTitle(), modReq.getContent());
 			conn.commit();
 		} catch (SQLException e) {
 			JdbcUtil.rollback(conn);

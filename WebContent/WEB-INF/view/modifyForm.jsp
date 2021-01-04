@@ -45,6 +45,7 @@
   
 <div class="container">
  <form action="modify.do" method="post">
+ <input type="text" hidden name="no" value="${param.no }"/>
  <p style="font-size: 30px">번호 : ${modReq.articleNumber}</p>
 <div class="card" >
   <div class="card-header"><b>제목</b></div>
@@ -64,6 +65,30 @@
   </form>
 </div>
 
+	<c:if test="${success }">
+		<div class="modal" tabindex="-1" id="myModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">수정 성공</h5>
+					</div>
+					<div class="modal-body">
+						<p>글이 수정되었습니다.</p>
+					</div>
+					<div class="modal-footer">
+						<a href="${root }/index.do" class="btn btn-primary">홈으로 가기</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			$('#myModal').modal({
+				backdrop : 'static',
+				keyboard : false
+			});
+		</script>
+	</c:if>
 
 </body>
 </html>

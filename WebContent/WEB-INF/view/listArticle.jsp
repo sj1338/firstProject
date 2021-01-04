@@ -61,9 +61,9 @@
     <div class="row">
       <div class="col-3"></div>
       <div class="col-6">
-        <h1 id=cat><b>${category } 게시판 입니다.</b></h1>
+        <h1 id=cat><b>${categoryMap[param.cat] } 게시판 입니다.</b></h1>
       <div class="writebtn text-right">
-        <a href="write.do" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">글 쓰기</a>
+        <a href="write.do?cat=${category }" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">글 쓰기</a>
 	  </div> 
         <div class="list-container">
           <table class="table">

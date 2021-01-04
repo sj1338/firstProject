@@ -16,14 +16,15 @@ import jdbc.JdbcUtil;
 public class ArticleDao {
 	
 	
-	public int update(Connection conn, int no, String title) throws SQLException {
+	public int update(Connection conn, int no, String title, String content) throws SQLException {
 		String sql = "UPDATE article "
-				+ "SET title=?, moddate=SYSDATE "
+				+ "SET title = ?, content = ?, moddate=SYSDATE "
 				+ "WHERE article_no=?";
 		
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setString(1, title);
-			pstmt.setInt(2, no);
+			pstmt.setString(2, content);
+			pstmt.setInt(3, no);
 			
 			int cnt = pstmt.executeUpdate();
 			return cnt;

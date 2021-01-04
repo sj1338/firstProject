@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="u" tagdir="/WEB-INF/tags"%>
@@ -21,20 +21,20 @@
 
 
 	<div class="container">
-		<div class="input-group mb-3">
 			<h1>게시물 삭제</h1>
 			<form action="delete.do" method="post">
 				<input type="text" name="no" id="" value="${param.no }" hidden />
+		<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="basic-addon1">암호</span>
 				</div>
 				<input type="password" name="password" class="form-control"
 					placeholder="Username" aria-label="Username"
 					aria-describedby="basic-addon1"> <br />
-				<c:if test="${errors.invalidePassword }">암호가 일치하지 않습니다.</c:if>
-				<input type="submit" value="글 삭제" />
-			</form>
 		</div>
+				<input class="btn btn-primary" type="submit" value="삭제">
+				<c:if test="${errors.invalidePassword }">암호가 일치하지 않습니다.</c:if>
+			</form>
 	</div>
 
 

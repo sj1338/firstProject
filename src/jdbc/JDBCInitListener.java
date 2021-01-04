@@ -1,5 +1,8 @@
 package jdbc;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -52,6 +55,17 @@ public class JDBCInitListener implements ServletContextListener {
          
      	String contextPath = application.getContextPath();
     	application.setAttribute("root", contextPath);
+    	
+    	// 카테고리 저장해두기
+    	Map<String, String> categoryMap = new HashMap<>();
+    	categoryMap.put("art", "예술");
+    	categoryMap.put("cook", "요리");
+    	categoryMap.put("game", "게임");
+    	categoryMap.put("music", "음악");
+    	categoryMap.put("sport", "스포츠");
+    	categoryMap.put("tour", "관광");
+    	
+    	application.setAttribute("categoryMap", categoryMap);
     }
 	
 }

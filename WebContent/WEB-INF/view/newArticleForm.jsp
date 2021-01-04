@@ -36,6 +36,7 @@
 	background-color: #cfffda;
 }
 
+
 </style>
 </head>
 
@@ -48,6 +49,7 @@
   <div class="form-group">
     <label for="exampleFormControlSelect1">카테고리</label>
     <select class="form-control" id="exampleFormControlSelect1" name="category" >
+      <option value="${param.cat }" style="font-weight : bold" selected disabled >${categoryMap[param.cat] }</option>
       <option value="art">예술</option>
       <option value="cook">요리</option>
       <option value="game">게임</option>
