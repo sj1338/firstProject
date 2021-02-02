@@ -44,7 +44,7 @@
     <ul class="navbar-nav mr-auto" >
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
-        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 20px;">
+        data-toggle="dropdown" aria-haspopup="t rue" aria-expanded="false" style="font-size: 20px;">
           카테고리
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
